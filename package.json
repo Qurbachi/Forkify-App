@@ -1,0 +1,34 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Forkify web application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qurbachi/Qurbachi-Forkify-App.git"
+  },
+  "author": "Damian Tworzydło",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qurbachi/Qurbachi-Forkify-App/issues"
+  },
+  "homepage": "https://github.com/Qurbachi/Qurbachi-Forkify-App#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "html-webpack-plugin": "^4.0.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0"
+  }
+}
