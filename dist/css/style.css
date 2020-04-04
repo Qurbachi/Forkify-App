@@ -222,6 +222,9 @@ body {
     opacity: 0;
     transition: all .5s .2s; }
 
+.results {
+  position: relative;
+}
 .results,
 .likes {
   padding: 3rem 0; }
@@ -284,6 +287,13 @@ body {
     color: #968B87;
     text-transform: uppercase;
     font-weight: 600; }
+    .results__pages {
+      /*position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);*/
+      width: 100%;
+    }
   .results__pages,
   .likes__pages {
     margin-top: 3rem;

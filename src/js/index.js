@@ -1,5 +1,7 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 /*
@@ -11,6 +13,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 */
 const state = {};
 
+//SEARCH CONTROLLER
 const controllSearch = async () => {
     //1) Get query from view
     const query = searchView.getInput();
@@ -23,12 +26,18 @@ const controllSearch = async () => {
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.searchResults);
-        //4) Search for the recipe
-        await state.search.getResults();
 
-        //5) Display the result
-        clearLoader();
-        searchView.renderResults(state.search.result);
+        try {
+            //4) Search for the recipe
+            await state.search.getResults();
+    
+            //5) Display the result
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        } catch(error) {
+            alert('Sorry, we couldn`t reciev that recipe for You :(');
+            clearLoader();
+        }
     }
 };
 
@@ -45,4 +54,38 @@ elements.searchResultsPages.addEventListener('click', e => {
         searchView.clearResults();
         searchView.renderResults(state.search.result, goToPage);
     }
-})
+});
+
+//RECIPE CONTROLLER
+const controllRecipe = async () => {
+    //get the id from the URL
+    const id = window.location.hash.replace('#', '');
+
+    if(id) {
+        //1) Prepare UI for changes
+            recipeView.clearRecipe();
+            renderLoader(elements.recipe);
+        //2) Create a new recipe object
+            state.recipe = new Recipe(id);
+
+        try {
+            //3) Get recipe and parse ingredients
+            await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
+            console.log(state.recipe);
+            //4) calculate time and servings
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+            //5) Render recipe
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
+        } catch (error) {
+            console.log(error);
+            alert('Error processing recipe');
+        }
+    }
+};
+
+/*window.addEventListener('hashchange', controllRecipe);
+window.addEventListener('load', controllRecipe);*/
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controllRecipe));
