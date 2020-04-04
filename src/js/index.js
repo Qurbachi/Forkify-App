@@ -62,21 +62,22 @@ const controllRecipe = async () => {
     const id = window.location.hash.replace('#', '');
 
     if(id) {
-        //1) Prepare UI for changes
+        // Prepare UI for changes
             recipeView.clearRecipe();
             renderLoader(elements.recipe);
-        //2) Create a new recipe object
+        
+        // Create a new recipe object
             state.recipe = new Recipe(id);
 
         try {
-            //3) Get recipe and parse ingredients
+            // Get recipe and parse ingredients
             await state.recipe.getRecipe();
             state.recipe.parseIngredients();
             console.log(state.recipe);
-            //4) calculate time and servings
+            // calculate time and servings
             state.recipe.calcTime();
             state.recipe.calcServings();
-            //5) Render recipe
+            // Render recipe
             clearLoader();
             recipeView.renderRecipe(state.recipe);
         } catch (error) {

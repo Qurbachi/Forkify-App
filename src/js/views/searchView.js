@@ -11,6 +11,15 @@ export const clearResults = () => {
     elements.searchResultsPages.innerHTML = '';
 };
 
+/*export const highlightSelected = id => {
+    const resultsArr = document.querySelectorAll('.results__link');
+    //resultsArr.forEach(el => {
+        //el.classList.remove('results__link--active');
+    //});
+    console.log(resultsArr);
+    document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
+};*/
+
 const shortenTitle = (title, limit = 17) => {
     let words = [];
     let newTitle = [];
