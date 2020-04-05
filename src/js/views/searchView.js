@@ -20,7 +20,7 @@ export const clearResults = () => {
     document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
 };*/
 
-const shortenTitle = (title, limit = 17) => {
+export const shortenTitle = (title, limit = 17) => {
     let words = [];
     let newTitle = [];
     if (title.length > limit) {
