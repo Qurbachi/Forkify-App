@@ -17,7 +17,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 * - liked recipes
 */
 const state = {};
-window.state = state;
+//window.state = state;
 
 //SEARCH CONTROLLER
 const controllSearch = async () => {
@@ -164,7 +164,7 @@ elements.shopping.addEventListener('click', e => {
        listView.deleteItem(id);
    } else if (e.target.matches('.shopping__count-value')) {
        const val = parseFloat(e.target.value, 10);
-       state.list.updateCount(id, val)
+       state.list.updateCount(id, val);
    }
 });
 
@@ -190,5 +190,3 @@ elements.recipe.addEventListener('click', e => {
         controllLike();
     }
 });
-
-window.l = new List();

@@ -116,4 +116,4 @@ export const updateIngredientsServings = recipe => {
     countElements.forEach((el, i) => {
         el.textContent = recipe.ingredients[i].count;
     });
-}
+};
